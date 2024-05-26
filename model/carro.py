@@ -3,75 +3,66 @@ from .database import conectar
 
 
 class Carro:
-    def __init__(self, marca, modelo, ano, combustivel, potencia, alugado=False):
-        self.marca = marca
+    def __init__(self, id_carro ,modelo, ano, preco, marca, cambio):
+        self.id_carro = id_carro
         self.modelo = modelo
         self.ano = ano
-        self.combustivel = combustivel
-        self.potencia = potencia
-        self.alugado = alugado
+        self.preco = preco
+        self.marca = marca
+        self.cambio = cambio
+    
     def salvar(self):
         conexao = conectar()
         cursor = conexao.cursor()
         cursor.execute("""
-        INSERT INTO Carro (marca, modelo, ano, combustivel, potencia)
-        VALUES (%s, %s, %s, %s, %s)
-        """, (self.marca, self.modelo, self.ano, self.combustivel, self.potencia))
+            INSERT INTO carro (modelo, ano, preco, id_marca, id_cambio)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (self.modelo, self.ano, self.preco, self.marca, self.cambio))
         conexao.commit()
         cursor.close()
         conexao.close()
 
-    def buscar(marca, modelo):
+    def buscar(where = "1 = 1"):
         conexao = conectar()
         cursor = conexao.cursor(dictionary=True)
         cursor.execute("""
-        SELECT * FROM Carro WHERE marca = %s AND modelo = %s
-        """, (marca, modelo))
+            SELECT 
+                c.id_carro,
+                c.modelo,
+                c.ano,
+                c.preco,
+                m.nome AS marca,
+                ca.tipo_cambio AS cambio
+            FROM carro c
+            JOIN marca m ON c.id_marca = m.id_marca
+            JOIN cambio ca ON c.id_cambio = ca.id_cambio
+            WHERE %s
+        """, (where))
         carro = cursor.fetchone()
         cursor.close()
         conexao.close()
         return carro
 
-    def removar(self):
+    def remover(self):
         conexao = conectar()
         cursor = conexao.cursor()
         cursor.execute("""
-        DELETE FROM Carro WHERE marca = %s AND modelo = %s
-        """, (self.marca, self.modelo))
+            DELETE FROM aluguel WHERE id_carro = %s
+            
+            DELETE FROM carro WHERE id_carro = %s
+        """, (self.id_carro))
         conexao.commit()
         cursor.close()
         conexao.close()
-
-    def alugar(self):
+    
+    def atualizar(self):
         conexao = conectar()
         cursor = conexao.cursor()
         cursor.execute("""
-        UPDATE Carro SET alugado = 1 WHERE marca = %s AND modelo = %s
-        """, (self.marca, self.modelo))
-        conexao.commit()
-        cursor.close()
-        conexao.close()
-
-    def cancelar_aluguel(self):
-        conexao = conectar()
-        cursor = conexao.cursor()
-        cursor.execute("""
-        UPDATE Carro SET alugado = 0 WHERE marca = %s AND modelo = %s
-        """, (self.marca, self.modelo))
-        conexao.commit()
-        cursor.close()
-        conexao.close()
-
-    def listar_todos_carros(self):
-        conexao = conectar()
-        cursor = conexao.cursor(dictionary=True)
-        cursor.execute("""
-        SELECT * FROM Carro
-        """)
-        carros = cursor.fetchall()
-        cursor.close()
-        conexao.close()
-        return carros
+            UPDATE carro
+            SET modelo = %s, ano = %s, preco = %s, id_marca = %s, id_cambio = %s
+            WHERE id_carro = %s
+        """, (self.modelo, self.ano, self.preco, self.marca, self.cambio, self.id_carro))
 
     def toString(self):
-        return f"Marca: {self.marca}, Modelo: {self.modelo}, Ano: {self.ano}, Combustível: {self.combustivel}, Potência: {self.potencia}"
+        return f"Modelo: {self.modelo}, Ano: {self.ano}, Preço: {self.preco}, Marca: {self.marca}, Câmbio: {self.cambio}"

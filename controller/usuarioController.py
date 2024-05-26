@@ -4,7 +4,7 @@ from view.interface import obter_dados_usuario, obter_dados_login
 
 def cadastrar_usuario():
     nome, email, senha = obter_dados_usuario()
-    usuario = Usuario(nome, email, senha)
+    usuario = Usuario(None, nome, email, senha)
     usuario.salvar()
     print("Usuário cadastrado com sucesso!")
 
@@ -17,3 +17,34 @@ def login():
     else:
         print("Email ou senha incorretos.")
         return None
+    
+def buscar_usuario():
+    dados = obter_dados_usuario()
+    where = dados if dados else "1 = 1"
+    usuario = Usuario.buscar(where)
+    
+    return mostrar_usuario(usuario) if usuario else print("Usuário não encontrado.")
+
+def excluir_usuario():
+    where = obter_dados_usuario()
+    usuario = Usuario.buscar(where)
+    if usuario:
+        usuario.remover()
+        print("Usuário removido com sucesso!")
+    else:
+        print("Usuário não encontrado.")
+    
+def editar_usuario():
+    where = obter_dados_usuario()
+    usuario = Usuario.buscar(where)
+    if usuario:
+        id_usuario, nome, email, senha = obter_dados_usuario()
+        usuario = Usuario(id_usuario, nome, email, senha)
+        usuario.atualizar()
+        print("Usuário editado com sucesso!")
+    else:
+        print("Usuário não encontrado.")
+
+def mostrar_usuario(usuario):
+    print(f"Detalhes do usuário: {usuario.toString()}")
+
