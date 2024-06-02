@@ -1,6 +1,6 @@
 # controller/aluguelController.py
 from model.aluguel import Aluguel
-from view.interface import obter_dados_aluguel, mostrar_aluguel
+from view.interfaceAluguel import obter_dados_aluguel, mostrar_aluguel
 
 def cadastrar_aluguel():
     id_carro, id_usuario, data_inicio, data_fim = obter_dados_aluguel()

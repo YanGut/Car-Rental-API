@@ -1,6 +1,6 @@
 # controller/usuario_controller.py
 from model.usuario import Usuario
-from view.interface import obter_dados_usuario, obter_dados_login
+from view.interfaceUsuario import obter_dados_usuario, obter_dados_login
 
 def cadastrar_usuario():
     nome, email, senha = obter_dados_usuario()

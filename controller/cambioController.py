@@ -1,6 +1,6 @@
 # controller/cambioController.py
 from model.cambio import Cambio
-from view.interface import obter_dados_cambio, mostrar_cambio
+from view.interfaceCambio import obter_dados_cambio, mostrar_cambio
 
 def cadastrar_cambio():
     tipo = obter_dados_cambio()

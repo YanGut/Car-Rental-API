@@ -1,6 +1,6 @@
 # controller/marcaController.py
 from model.marca import Marca
-from view.interface import obter_dados_marca, mostrar_marca
+from view.interfaceMarca import obter_dados_marca, mostrar_marca
 
 def cadastrar_marca():
     nome = obter_dados_marca()

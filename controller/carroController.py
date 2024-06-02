@@ -1,6 +1,6 @@
 # controller/carro_controller.py
 from model.carro import Carro
-from view.interface import obter_dados_carro, obter_dados_consulta, mostrar_carro
+from view.interfaceCarro import obter_dados_carro, obter_dados_consulta, mostrar_carro
 
 def cadastrar_carro():
     modelo, ano, preco, marca,  cambio = obter_dados_carro()
