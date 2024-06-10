@@ -28,9 +28,9 @@ def menu_administrador():
         else:
             print("Opção inválida!")
 
-def menu_usuario():
+def menu_usuario(usuario):
     while True:
-        mostrar_menu_usuario()
+        mostrar_menu_usuario(usuario)
         opcao = input("Selecione uma opção: ")
         
         if opcao == "0":
@@ -40,8 +40,8 @@ def menu_usuario():
         elif opcao == "2":
             detalhar_carro()
         elif opcao == "3":
-            cadastrar_aluguel()
-            mostrar_aluguel()
+            alugs = cadastrar_aluguel()
+            mostrar_aluguel(alugs)
         elif opcao == "4":
             mostrar_aluguel()
             excluir_aluguel()

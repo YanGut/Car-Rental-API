@@ -7,6 +7,7 @@ def cadastrar_aluguel():
     aluguel = Aluguel(None, id_carro, id_usuario, data_inicio, data_fim)
     aluguel.salvar()
     print("Aluguel cadastrado com sucesso!")
+    return aluguel
 
 def buscar_aluguel():
     dados = obter_dados_aluguel()

@@ -17,10 +17,10 @@ def main():
         if opcao == "1":
             usuario = login()
             if usuario:
-                if usuario[2] == "Administrador":
+                if usuario[4] == 1:
                     menu_administrador()
                 else:
-                    menu_usuario()                    
+                    menu_usuario(usuario)
         elif opcao == "2":
             cadastrar_usuario()
         elif opcao == "0":
