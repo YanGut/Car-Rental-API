@@ -2,8 +2,8 @@
 from .database import conectar
 
 class Cambio:
-    def __init__(self, id_cambio, tipo_cambio):
-        self.id_cambio = id_cambio
+    def __init__(self, tipo_cambio):
+        self.id_cambio = None
         self.tipo_cambio = tipo_cambio
 
     def salvar(self):

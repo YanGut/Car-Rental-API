@@ -5,10 +5,9 @@ limpar_console = lambda: os.system('cls')
 
 # Interface Cambio
 def obter_dados_cambio():
-    limpar_console()
     while True:
-        cambio = input("Tipo de Câmbio: ")
-        if validar_marca_modelo(cambio):
+        cambio = input("Câmbio (Manual, Automático): ")
+        if validar_cambio(cambio):
             break
         print("Tipo de Câmbio inválido. Tente novamente.")
         

@@ -1,16 +1,18 @@
 import os
 from utils.validacoes import *
+from controller.marcaController import *
+from controller.cambioController import *
+from view.interfaceMarca import obter_dados_marca
 
 limpar_console = lambda: os.system('cls')
 
 # Interface Carro
 def obter_dados_carro():
     limpar_console()
-    while True:
-        marca = input("Marca: ")
-        if validar_marca_modelo(marca):
-            break
-        print("Marca inválida. Tente novamente.")
+    
+    marca = cadastrar_marca()
+    
+    print("marca, ", marca.id_marca)
         
     while True:
         modelo = input("Modelo: ")
@@ -30,11 +32,7 @@ def obter_dados_carro():
             break
         print("Preco inválido. Tente novamente.")
         
-    while True:
-        cambio = input("Câmbio (Manual, Automático): ")
-        if validar_cambio(cambio):
-            break
-        print("Cambio invalido. Tente novamente.")
+    cambio = cadastrar_cambio()
         
     return modelo, ano, preco, marca, cambio
 

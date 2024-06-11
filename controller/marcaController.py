@@ -4,9 +4,10 @@ from view.interfaceMarca import obter_dados_marca, mostrar_marca
 
 def cadastrar_marca():
     nome = obter_dados_marca()
-    marca = Marca(None, nome)
+    marca = Marca(nome)
     marca.salvar()
     print("Marca cadastrada com sucesso!")
+    return marca
 
 def buscar_marca():
     dados = obter_dados_marca()

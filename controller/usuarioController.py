@@ -29,7 +29,7 @@ def excluir_usuario():
     where = obter_dados_usuario()
     usuario = Usuario.buscar(where)
     if usuario:
-        usuario.remover()
+        Usuario.remover()
         print("Usuário removido com sucesso!")
     else:
         print("Usuário não encontrado.")

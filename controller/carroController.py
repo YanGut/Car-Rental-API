@@ -4,7 +4,7 @@ from view.interfaceCarro import obter_dados_carro, obter_dados_consulta, mostrar
 
 def cadastrar_carro():
     modelo, ano, preco, marca,  cambio = obter_dados_carro()
-    carro = Carro(None, modelo, ano, preco, marca, cambio)
+    carro = Carro(None, modelo, ano, preco, marca.id_marca, cambio.id_cambio)
     carro.salvar()
     print("Carro cadastrado com sucesso!")
 

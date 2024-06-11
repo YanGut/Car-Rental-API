@@ -20,6 +20,10 @@ def validar_potencia(potencia):
 def validar_marca_modelo(valor):
     return len(valor.strip()) > 0
 
+def validar_marca(marca):
+    marcas_validas = ["Chevrolet", "Ford", "Fiat", "Volkswagen", "Renault", "Toyota", "Hyundai", "Honda", "Jeep", "Nissan"]
+    return marca in marcas_validas
+
 def validar_combustivel(combustivel):
     combustiveis_validos = ["Gasolina", "Álcool", "Diesel", "Flex"]
     return combustivel in combustiveis_validos

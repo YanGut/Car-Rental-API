@@ -2,8 +2,8 @@
 from .database import conectar
 
 class Marca:
-    def __init__(self, id_marca, nome):
-        self.id_marca = id_marca
+    def __init__(self, nome):
+        self.id_marca = None
         self.nome = nome
 
     def salvar(self):
