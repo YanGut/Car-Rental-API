@@ -23,3 +23,10 @@ def validar_marca_modelo(valor):
 def validar_combustivel(combustivel):
     combustiveis_validos = ["Gasolina", "Álcool", "Diesel", "Flex"]
     return combustivel in combustiveis_validos
+
+def validar_cambio(cambio):
+    cambios_validos = ["Manual", "Automático"]
+    return cambio in cambios_validos
+
+def validar_preco(preco):
+    return preco > 0

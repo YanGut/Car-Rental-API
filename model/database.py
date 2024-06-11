@@ -5,7 +5,7 @@ def criar_DB():
     db_connection = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="12345678"
+        password="root"
     )
     cursor = db_connection.cursor()
     cursor.execute("CREATE DATABASE IF NOT EXISTS aluguel_de_carros")
@@ -16,7 +16,7 @@ def conectar():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="12345678",
+        password="root",
         database="aluguel_de_carros"
     )
 

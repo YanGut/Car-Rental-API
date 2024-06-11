@@ -46,13 +46,11 @@ def menu_usuario(usuario):
             mostrar_aluguel()
             excluir_aluguel()
         elif opcao == "5":
-            mostrar_usuario()
             editar_usuario() 
         elif opcao == "6":
             certezaDeExclusaoDoUsuario = input("Tem certeza que deseja excluir sua conta? (s/n) ")
             if certezaDeExclusaoDoUsuario.lower() == "s":
                 print("Usuário que será excluído:")
-                mostrar_usuario()
                 excluir_usuario()
                 break
         else:
