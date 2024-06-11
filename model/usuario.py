@@ -20,7 +20,7 @@ class Usuario:
         cursor.close()
         conexao.close()
     
-    def buscar(where = "1 = 1"):
+    def buscar(nome, email, senha):
         conexao = conectar()
         cursor = conexao.cursor(dictionary=True)
         cursor.execute("""
@@ -31,8 +31,8 @@ class Usuario:
                 senha,
                 adm
             FROM usuario
-            WHERE %s
-        """, (where))
+            WHERE nome = %s AND email = %s AND senha = %s
+        """, (nome, email, senha))
         usuario = cursor.fetchone()
         cursor.close()
         conexao.close()

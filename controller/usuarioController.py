@@ -35,10 +35,12 @@ def excluir_usuario():
         print("Usuário não encontrado.")
     
 def editar_usuario():
-    where = obter_dados_usuario()
-    usuario = Usuario.buscar(where)
+    nome, email, senha = obter_dados_usuario()
+    usuario = Usuario.buscar(nome, email, senha)
+    print(usuario)
     if usuario:
-        id_usuario, nome, email, senha = obter_dados_usuario()
+        id_usuario = usuario['id_usuario']
+        nome, email, senha = obter_dados_usuario()
         usuario = Usuario(id_usuario, nome, email, senha)
         usuario.atualizar()
         print("Usuário editado com sucesso!")
