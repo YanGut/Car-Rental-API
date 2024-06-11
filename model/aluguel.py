@@ -2,20 +2,21 @@
 from .database import conectar
 
 class Aluguel:
-    def __init__(self, id_aluguel, id_usuario, id_carro, data_inicio, data_fim):
+    def __init__(self, id_aluguel, id_carro, id_usuario, data_inicio, data_fim, valor_total):
         self.id_aluguel = id_aluguel
-        self.id_usuario = id_usuario
         self.id_carro = id_carro
+        self.id_usuario = id_usuario
         self.data_inicio = data_inicio
         self.data_fim = data_fim
+        self.valor_total = valor_total
 
     def salvar(self):
         conexao = conectar()
         cursor = conexao.cursor()
         cursor.execute("""
-            INSERT INTO aluguel (id_usuario, id_carro, data_inicio, data_fim)
-            VALUES (%s, %s, %s, %s)
-        """, (self.id_usuario, self.id_carro, self.data_inicio, self.data_fim))
+            INSERT INTO aluguel (id_usuario, id_carro, dt_inicio, dt_fim, valor_total)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (self.id_usuario, self.id_carro, self.data_inicio, self.data_fim, self.valor_total))
         conexao.commit()
         cursor.close()
         conexao.close()

@@ -41,9 +41,9 @@ def menu_usuario(usuario):
             detalhar_carro()
         elif opcao == "3":
             alugs = cadastrar_aluguel()
-            mostrar_aluguel(alugs)
+            # mostrar_aluguel(alugs)
         elif opcao == "4":
-            mostrar_aluguel()
+            # mostrar_aluguel()
             excluir_aluguel()
         elif opcao == "5":
             editar_usuario() 

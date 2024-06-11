@@ -29,8 +29,10 @@ def obter_dados_aluguel():
         
     data_inicio = input("Data de Início (yyyy-mm-dd): ")
     data_fim = input("Data de Fim (yyyy-mm-dd): ")
+    valor_total = float(input("Valor Total: "))
     
-    return id_carro, id_usuario, data_inicio, data_fim
+    return id_carro, id_usuario, data_inicio, data_fim, valor_total
+
 
 def mostrar_alugueis(alugueis):
     for aluguel in alugueis:

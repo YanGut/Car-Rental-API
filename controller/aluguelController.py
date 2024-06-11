@@ -3,8 +3,8 @@ from model.aluguel import Aluguel
 from view.interfaceAluguel import obter_dados_aluguel, mostrar_aluguel
 
 def cadastrar_aluguel():
-    id_carro, id_usuario, data_inicio, data_fim = obter_dados_aluguel()
-    aluguel = Aluguel(None, id_carro, id_usuario, data_inicio, data_fim)
+    id_carro, id_usuario, data_inicio, data_fim, valor_total = obter_dados_aluguel()
+    aluguel = Aluguel(None, id_carro, id_usuario, data_inicio, data_fim, valor_total)
     aluguel.salvar()
     print("Aluguel cadastrado com sucesso!")
     return aluguel
@@ -37,4 +37,4 @@ def editar_aluguel():
         print("Aluguel não encontrado.")
 
 def mostrar_aluguel(aluguel):
-    print(f"Detalhes do aluguel: {aluguel.toString()}")
+    print(f"Detalhes do aluguel: {aluguel}")
