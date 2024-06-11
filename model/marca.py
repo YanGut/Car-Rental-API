@@ -14,6 +14,7 @@ class Marca:
             VALUES (%s)
         """, (self.nome,))
         conexao.commit()
+        self.id_marca = cursor.lastrowid
         cursor.close()
         conexao.close()
 

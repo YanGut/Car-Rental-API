@@ -14,6 +14,7 @@ class Cambio:
             VALUES (%s)
         """, (self.tipo_cambio,))
         conexao.commit()
+        self.id_cambio = cursor.lastrowid
         cursor.close()
         conexao.close()
 
