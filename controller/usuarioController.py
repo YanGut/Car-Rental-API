@@ -26,9 +26,16 @@ def buscar_usuario():
     return mostrar_usuario(usuario) if usuario else print("Usuário não encontrado.")
 
 def excluir_usuario():
-    where = obter_dados_usuario()
-    usuario = Usuario.buscar(where)
-    if usuario:
+    nome, email, senha = obter_dados_usuario()
+    usuario_dict = Usuario.buscar(nome, email, senha)
+    if usuario_dict:
+        usuario = Usuario(
+            usuario_dict['id_usuario'], 
+            usuario_dict['nome'], 
+            usuario_dict['email'], 
+            usuario_dict['senha'], 
+            usuario_dict['adm']
+        )
         usuario.remover()
         print("Usuário removido com sucesso!")
     else:

@@ -43,9 +43,10 @@ class Usuario:
         cursor = conexao.cursor()
         cursor.execute("""
             DELETE FROM aluguel WHERE id_usuario = %s
-            
+        """, (self.id_usuario,))
+        cursor.execute("""
             DELETE FROM usuario WHERE id_usuario = %s
-        """, (self.id_usuario))
+        """, (self.id_usuario,))
         conexao.commit()
         cursor.close()
         conexao.close()
