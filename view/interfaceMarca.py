@@ -1,14 +1,12 @@
 import os
 from utils.validacoes import *
 
-limpar_console = lambda: os.system('cls')
-
 # Interface Marca
 def obter_dados_marca():
-    limpar_console()
     while True:
+        print("Marcas disponíveis: Chevrolet, Ford, Fiat, Volkswagen, Renault, Toyota, Hyundai, Honda, Jeep, Nissan")
         marca = input("Marca: ")
-        if validar_marca_modelo(marca):
+        if validar_marca(marca):
             break
         print("Marca inválida. Tente novamente.")
         

@@ -4,9 +4,10 @@ from view.interfaceCambio import obter_dados_cambio, mostrar_cambio
 
 def cadastrar_cambio():
     tipo = obter_dados_cambio()
-    cambio = Cambio(None, tipo)
+    cambio = Cambio(tipo)
     cambio.salvar()
     print("Câmbio cadastrado com sucesso!")
+    return cambio
 
 def buscar_cambio():
     dados = obter_dados_cambio()

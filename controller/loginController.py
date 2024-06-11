@@ -1,4 +1,4 @@
-# controller/login_controller.py
+# controller/login_controller.pySELECT * FROM carro;
 from view.interface import mostrar_menu_administrador, mostrar_menu_usuario, mostrar_menu_principal
 from controller.carroController import cadastrar_carro, buscar_carro, detalhar_carro, comparar_carros, editar_carro, excluir_carro
 from controller.aluguelController import excluir_aluguel, cadastrar_aluguel, mostrar_aluguel
