@@ -34,3 +34,6 @@ def validar_cambio(cambio):
 
 def validar_preco(preco):
     return preco > 0
+
+def validar_id_carro(id_carro):
+    return id_carro.isdigit() and int(id_carro) > 0

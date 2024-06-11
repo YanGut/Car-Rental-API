@@ -1,6 +1,6 @@
 # controller/carro_controller.py
 from model.carro import Carro
-from view.interfaceCarro import obter_dados_carro, obter_dados_consulta, mostrar_carro
+from view.interfaceCarro import *
 
 def cadastrar_carro():
     modelo, ano, preco, marca,  cambio = obter_dados_carro()
@@ -16,9 +16,9 @@ def buscar_carro():
     return mostrar_carro(carro) if carro else print("Carro não encontrado.")
 
 def detalhar_carro():
-    dados = obter_dados_consulta()
-    where = dados if dados else "1 = 1"
-    carro = Carro.buscar(where)
+    dados = obter_id_carro()
+    # where = dados if dados else "1 = 1"
+    carro = Carro.buscar_carro_por_id(dados)
     
     return print(f"Detalhes do carro: {carro}") if carro else print("Carro não encontrado.")
 

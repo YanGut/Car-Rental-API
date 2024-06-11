@@ -22,9 +22,10 @@ class Carro:
         cursor.close()
         conexao.close()
 
-    def buscar(where = "1 = 1"):
+    def buscar(where):
         conexao = conectar()
         cursor = conexao.cursor(dictionary=True)
+        
         cursor.execute("""
             SELECT 
                 c.id_carro,
@@ -41,6 +42,31 @@ class Carro:
         carro = cursor.fetchone()
         cursor.close()
         conexao.close()
+        return carro
+    
+    def buscar_carro_por_id(id_carro):
+        conexao = conectar()
+        cursor = conexao.cursor(dictionary=True)
+    
+        query = """
+            SELECT 
+                c.id_carro,
+                c.modelo,
+                c.ano,
+                c.preco,
+                m.nome AS marca,
+                ca.tipo_cambio AS cambio
+            FROM carro c
+            JOIN marca m ON c.id_marca = m.id_marca
+            JOIN cambio ca ON c.id_cambio = ca.id_cambio
+            WHERE c.id_carro = %s
+        """
+        
+        cursor.execute(query, (id_carro,))
+        carro = cursor.fetchone()
+        cursor.close()
+        conexao.close()
+        
         return carro
 
     def remover(self):

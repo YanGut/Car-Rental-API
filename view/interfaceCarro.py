@@ -45,12 +45,22 @@ def obter_dados_consulta():
         print("Marca inválida. Tente novamente.")
         
     while True:
-        modelo = input("Modelo: ")
-        if validar_marca_modelo(modelo):
+        cambio = input("cambio(): ")
+        if validar_marca_modelo(cambio):
             break
         print("Modelo inválido. Tente novamente.")
         
-    return marca, modelo
+    return marca, cambio
+
+def obter_id_carro():
+    limpar_console()
+    while True:
+        id_carro = int(input("id_carro: "))
+        if id_carro > 0:
+            break
+        print("id_carro inválido. Tente novamente.")
+        
+    return id_carro
 
 def mostrar_carro(carro):
     print("=== Carro ===")

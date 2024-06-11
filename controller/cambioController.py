@@ -6,7 +6,6 @@ def cadastrar_cambio():
     tipo = obter_dados_cambio()
     cambio = Cambio(tipo)
     cambio.salvar()
-    print("Câmbio cadastrado com sucesso!")
     return cambio
 
 def buscar_cambio():
