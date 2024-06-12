@@ -9,17 +9,28 @@ def cadastrar_carro():
     print("Carro cadastrado com sucesso!")
 
 def buscar_carro():
-    dados = obter_dados_consulta()
-    where = dados if dados else "1 = 1"
-    carro = Carro.buscar(where)
+    marca, modelo = obter_dados_consulta()
+    carro = Carro.buscar(modelo, marca)
     
-    return mostrar_carro(carro) if carro else print("Carro não encontrado.")
+    mostrar_carro(carro) if carro else print("Carro não encontrado.")
+    
+    while True:
+        terminouDeVisualizar = input("Deseja voltar ao menu principal? (s/n) ")
+        if terminouDeVisualizar.lower() == "s":
+            break
+        elif terminouDeVisualizar.lower() == "n":
+            continue
+        print("Opção inválida.")
+    
 
-def detalhar_carro():
-    dados = obter_id_carro()
-    carro = Carro.buscar_carro_por_id(dados)
-    
-    print(f"Detalhes do carro: {carro}") if carro else print("Carro não encontrado.")
+def detalhar_carro(administrador):
+    dados = obter_id_carro(administrador)
+    if administrador:
+        carro = Carro.buscar_carro_por_id_adm(dados)
+        print(f"Detalhes do carro: {carro}") if carro else print("Carro não encontrado.")
+    else:
+        carro = Carro.bucar_carro_por_id_usuario(dados)
+        print(f"Detalhes do carro: {carro}") if carro else print("Nenhum carro alugado.")
     
     while True:
         terminouDeVisualizar = input("Deseja voltar ao menu principal? (s/n) ")

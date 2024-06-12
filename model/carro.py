@@ -22,7 +22,7 @@ class Carro:
         cursor.close()
         conexao.close()
 
-    def buscar(where):
+    def buscar(modelo, nome_marca):
         conexao = conectar()
         cursor = conexao.cursor(dictionary=True)
         
@@ -37,14 +37,14 @@ class Carro:
             FROM carro c
             JOIN marca m ON c.id_marca = m.id_marca
             JOIN cambio ca ON c.id_cambio = ca.id_cambio
-            WHERE %s
-        """, (where))
+            WHERE c.modelo = %s AND m.nome = %s
+        """, (modelo, nome_marca))
         carro = cursor.fetchone()
         cursor.close()
         conexao.close()
         return carro
     
-    def buscar_carro_por_id(id_carro):
+    def buscar_carro_por_id_adm(id_carro):
         conexao = conectar()
         cursor = conexao.cursor(dictionary=True)
         
@@ -62,6 +62,29 @@ class Carro:
             WHERE c.id_carro = %s
         """, (id_carro,))
         carro = cursor.fetchone()
+        cursor.close()
+        conexao.close()
+        
+        return carro
+    
+    def bucar_carro_por_id_usuario(id_usuario):
+        conexao = conectar()
+        cursor = conexao.cursor(dictionary=True)
+        
+        cursor.execute("""
+            SELECT 
+                c.modelo,
+                c.ano,
+                c.preco,
+                m.nome AS marca,
+                ca.tipo_cambio AS cambio
+            FROM carro c
+            JOIN marca m ON c.id_marca = m.id_marca
+            JOIN cambio ca ON c.id_cambio = ca.id_cambio
+            JOIN aluguel a ON c.id_carro = a.id_carro
+            WHERE a.id_usuario = %s
+        """, (id_usuario,))
+        carro = cursor.fetchall()
         cursor.close()
         conexao.close()
         

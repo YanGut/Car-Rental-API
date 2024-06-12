@@ -39,38 +39,44 @@ def obter_dados_carro():
 def obter_dados_consulta():
     limpar_console()
     while True:
+        print("Marcas disponíveis: Chevrolet, Ford, Fiat, Volkswagen, Renault, Toyota, Hyundai, Honda, Jeep, Nissan")
         marca = input("Marca: ")
-        if validar_marca_modelo(marca):
+        if validar_marca(marca):
             break
         print("Marca inválida. Tente novamente.")
         
     while True:
-        cambio = input("cambio(): ")
-        if validar_marca_modelo(cambio):
+        modelo = input("cambio(): ")
+        if validar_marca_modelo(modelo):
             break
         print("Modelo inválido. Tente novamente.")
         
-    return marca, cambio
+    return marca, modelo
 
-def obter_id_carro():
+def obter_id_carro(administrador):
     limpar_console()
     while True:
-        id_carro = int(input("id_carro: "))
-        if id_carro > 0:
-            break
-        print("id_carro inválido. Tente novamente.")
+        if administrador:
+            id_carro = int(input("id_carro: "))
+            if id_carro > 0:
+                return id_carro
+            print("id_carro inválido. Tente novamente.")
+        else:
+            id_usuario = int(input("id_usuario: "))
+            if id_usuario > 0:
+                return id_usuario
+            print("id_usuario inválido. Tente novamente.")
         
-    return id_carro
+    
 
 def mostrar_carro(carro):
     print("=== Carro ===")
-    print(f"id: {carro['id']}")
+    print(f"id: {carro['id_carro']}")
     print(f"Marca: {carro['marca']}")
     print(f"Modelo: {carro['modelo']}")
     print(f"Ano: {carro['ano']}")
-    print(f"Combustível: {carro['combustivel']}")
-    print(f"Potência: {carro['potencia']}")
-    print(f"Alugado: {'Sim' if carro['alugado'] else 'Não'}")
+    print(f"Preco: {carro['preco']}")
+    print(f"Cambio: {carro['cambio']}")
 
 def mostrar_carros(carros):
     for carro in carros:

@@ -15,7 +15,7 @@ def menu_administrador():
         elif opcao == "2":
             buscar_carro()
         elif opcao == "3":
-            detalhar_carro()
+            detalhar_carro(True)
         elif opcao == "4":
             comparar_carros()
         elif opcao == "5":
@@ -37,7 +37,7 @@ def menu_usuario(usuario):
         elif opcao == "1":
             buscar_carro()
         elif opcao == "2":
-            detalhar_carro()
+            detalhar_carro(False)
         elif opcao == "3":
             alugs = cadastrar_aluguel()
             # mostrar_aluguel(alugs)
