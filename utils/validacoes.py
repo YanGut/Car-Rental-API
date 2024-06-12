@@ -1,5 +1,6 @@
 # utils/validacoes.py
 import re
+from datetime import datetime
 
 def validar_email(email):
     padrao = r'^[\w\.-]+@[\w\.-]+\.\w+$'
@@ -34,6 +35,16 @@ def validar_cambio(cambio):
 
 def validar_preco(preco):
     return preco > 0
+
+def validar_data(data):
+    padrao = r'^\d{4}-\d{2}-\d{2}$'
+    if not re.match(padrao, data):
+        return False
+    try:
+        datetime.strptime(data, '%Y-%m-%d')
+        return True
+    except ValueError:
+        return False
 
 def validar_id_carro(id_carro):
     return id_carro.isdigit() and int(id_carro) > 0

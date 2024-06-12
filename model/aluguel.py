@@ -2,25 +2,26 @@
 from .database import conectar
 
 class Aluguel:
-    def __init__(self, id_aluguel, id_usuario, id_carro, data_inicio, data_fim):
+    def __init__(self, id_aluguel, id_carro, id_usuario, data_inicio, data_fim, valor_total):
         self.id_aluguel = id_aluguel
-        self.id_usuario = id_usuario
         self.id_carro = id_carro
+        self.id_usuario = id_usuario
         self.data_inicio = data_inicio
         self.data_fim = data_fim
+        self.valor_total = valor_total
 
     def salvar(self):
         conexao = conectar()
         cursor = conexao.cursor()
         cursor.execute("""
-            INSERT INTO aluguel (id_usuario, id_carro, data_inicio, data_fim)
-            VALUES (%s, %s, %s, %s)
-        """, (self.id_usuario, self.id_carro, self.data_inicio, self.data_fim))
+            INSERT INTO aluguel (id_usuario, id_carro, dt_inicio, dt_fim, valor_total)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (self.id_usuario, self.id_carro, self.data_inicio, self.data_fim, self.valor_total))
         conexao.commit()
         cursor.close()
         conexao.close()
     
-    def buscaSimplificada(where = "1 = 1"):
+    def buscaSimplificada(id_carro, id_usuario, data_inicio, data_fim, valor_total):
         conexao = conectar()
         cursor = conexao.cursor(dictionary=True)
         cursor.execute("""
@@ -28,11 +29,12 @@ class Aluguel:
                 id_aluguel,
                 id_usuario,
                 id_carro,
-                data_inicio,
-                data_fim
+                dt_inicio,
+                dt_fim,
+                valor_total
             FROM aluguel
-            WHERE %s
-        """, (where,))
+            WHERE id_carro = %s AND id_usuario = %s AND dt_inicio = %s AND dt_fim = %s AND valor_total = %s
+        """, (id_carro, id_usuario, data_inicio, data_fim, valor_total))
         aluguel = cursor.fetchone()
         cursor.close()
         conexao.close()
@@ -64,12 +66,12 @@ class Aluguel:
         conexao.close()
         return aluguel
     
-    def remover(self):
+    def remover(id_aluguel):
         conexao = conectar()
         cursor = conexao.cursor()
         cursor.execute("""
             DELETE FROM aluguel WHERE id_aluguel = %s
-        """, (self.id_aluguel,))
+        """, (id_aluguel,))
         conexao.commit()
         cursor.close()
         conexao.close()

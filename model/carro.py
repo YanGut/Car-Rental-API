@@ -92,3 +92,12 @@ class Carro:
 
     def toString(self):
         return f"Modelo: {self.modelo}, Ano: {self.ano}, Preço: {self.preco}, Marca: {self.marca}, Câmbio: {self.cambio}"
+    
+    def verificar_id_carro(id_carro):
+        conexao = conectar()
+        cursor = conexao.cursor()
+        cursor.execute("SELECT 1 FROM carro WHERE id_carro = %s", (id_carro,))
+        carro = cursor.fetchone()
+        cursor.close()
+        conexao.close()
+        return carro is not None
