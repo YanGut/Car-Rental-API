@@ -24,7 +24,7 @@ def mostrar_menu_administrador():
 
 def mostrar_menu_usuario(usuario):
     limpar_console()
-    print(f"=== Menu do Usuário ===\nUsuário: {usuario[4]}")
+    print(f"=== Menu do Usuário ===\nUsuário: {usuario[1]}")
     print("=== Menu do Usuário ===")
     print("1. Buscar Carro")
     print("2. Visualizar Detalhes do Carro")

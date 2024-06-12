@@ -21,9 +21,18 @@ def validar_potencia(potencia):
 def validar_marca_modelo(valor):
     return len(valor.strip()) > 0
 
-def validar_marca(marca):
-    marcas_validas = ["Chevrolet", "Ford", "Fiat", "Volkswagen", "Renault", "Toyota", "Hyundai", "Honda", "Jeep", "Nissan"]
-    return marca in marcas_validas
+validar_marca = lambda marca: marca in {
+    "Chevrolet": True,
+    "Ford": True,
+    "Fiat": True,
+    "Volkswagen": True,
+    "Renault": True,
+    "Toyota": True,
+    "Hyundai": True,
+    "Honda": True,
+    "Jeep": True,
+    "Nissan": True
+}
 
 def validar_combustivel(combustivel):
     combustiveis_validos = ["Gasolina", "Álcool", "Diesel", "Flex"]
@@ -34,7 +43,7 @@ def validar_cambio(cambio):
     return cambio in cambios_validos
 
 def validar_preco(preco):
-    return preco > 0
+    return preco.isdigit() and float(preco) > 0
 
 def validar_data(data):
     padrao = r'^\d{4}-\d{2}-\d{2}$'

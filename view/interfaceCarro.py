@@ -27,7 +27,7 @@ def obter_dados_carro():
         print("Ano inválido. Deve estar entre 1900 e 2025. Tente novamente.")
         
     while True:
-        preco = int(input("Preco: "))
+        preco = input("Preco: ")
         if validar_preco(preco):
             break
         print("Preco inválido. Tente novamente.")
@@ -46,7 +46,7 @@ def obter_dados_consulta():
         print("Marca inválida. Tente novamente.")
         
     while True:
-        modelo = input("cambio(): ")
+        modelo = input("Modelo: ")
         if validar_marca_modelo(modelo):
             break
         print("Modelo inválido. Tente novamente.")
