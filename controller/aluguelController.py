@@ -20,17 +20,7 @@ def excluir_aluguel():
     id_carro, id_usuario, data_inicio, data_fim, valor_total = obter_dados_aluguel()
     aluguel_dic = Aluguel.buscaSimplificada(id_carro, id_usuario, data_inicio, data_fim, valor_total)
     if aluguel_dic:
-        # aluguel = Aluguel(
-        #     aluguel_dic['id_aluguel'],
-        #     aluguel_dic['id_carro'], 
-        #     aluguel_dic['id_usuario'], 
-        #     aluguel_dic['dt_inicio'],
-        #     aluguel_dic['dt_fim'], 
-        #     aluguel_dic['valor_total']
-        # )
-        # aluguel.remover()
         Aluguel.remover(aluguel_dic['id_aluguel'])
-
         print("Aluguel removido com sucesso!")
     else:
         print("Aluguel não encontrado.")

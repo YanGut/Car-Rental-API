@@ -101,3 +101,18 @@ class Carro:
         cursor.close()
         conexao.close()
         return carro is not None
+    
+    def verificar_disponibilidade_carro(id_carro, data_inicio, data_fim):
+        conexao = conectar()
+        cursor = conexao.cursor()
+        query = """
+            SELECT 1 
+            FROM aluguel 
+            WHERE id_carro = %s 
+            AND (dt_inicio <= %s AND dt_fim >= %s)
+        """
+        cursor.execute(query, (id_carro, data_fim, data_inicio))
+        resultado = cursor.fetchall()
+        cursor.close()
+        conexao.close()
+        return len(resultado) == 0

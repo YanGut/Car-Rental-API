@@ -4,7 +4,19 @@ from view.interfaceUsuario import obter_dados_usuario, obter_dados_login
 
 def cadastrar_usuario():
     nome, email, senha = obter_dados_usuario()
-    usuario = Usuario(None, nome, email, senha)
+
+    while True:
+        adm = input("O usuário é administrador? (s/n) ")
+        if adm.lower() == "s":
+            adm = 1
+            break
+        elif adm.lower() == "n":
+            adm = 0
+            break
+        else:
+            print("Opção inválida!")
+
+    usuario = Usuario(None, nome, email, senha, adm)
     usuario.salvar()
     print("Usuário cadastrado com sucesso!")
 
