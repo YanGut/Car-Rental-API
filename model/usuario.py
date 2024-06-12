@@ -84,3 +84,12 @@ class Usuario:
     
     def toString(self):
         return f"Nome: {self.nome}, Email: {self.email}, Adm: {self.adm}"
+
+    def verificar_id_usuario(id_usuario):
+        conexao = conectar()
+        cursor = conexao.cursor()
+        cursor.execute("SELECT 1 FROM usuario WHERE id_usuario = %s", (id_usuario,))
+        usuario = cursor.fetchone()
+        cursor.close()
+        conexao.close()
+        return usuario is not None
