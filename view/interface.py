@@ -5,14 +5,14 @@ from utils.validacoes import *
 limpar_console = lambda: os.system('clear')
 
 def mostrar_menu_principal():
-    limpar_console()
+    limpar_console()    
     print("=== Sistema de Aluguel de Carros ===")
     print("1. Login")
     print("2. Cadastrar Usuário")
     print("0. Sair")
 
 def mostrar_menu_administrador():
-    limpar_console()
+    limpar_console()  
     print("=== Menu do Administrador ===")
     print("1. Cadastrar Carro")
     print("2. Buscar Carro")

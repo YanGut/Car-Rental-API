@@ -17,10 +17,17 @@ def buscar_carro():
 
 def detalhar_carro():
     dados = obter_id_carro()
-    # where = dados if dados else "1 = 1"
     carro = Carro.buscar_carro_por_id(dados)
     
-    return print(f"Detalhes do carro: {carro}") if carro else print("Carro não encontrado.")
+    print(f"Detalhes do carro: {carro}") if carro else print("Carro não encontrado.")
+    
+    while True:
+        terminouDeVisualizar = input("Deseja voltar ao menu principal? (s/n) ")
+        if terminouDeVisualizar.lower() == "s":
+            break
+        elif terminouDeVisualizar.lower() == "n":
+            continue
+        print("Opção inválida.")
 
 def comparar_carros():
     dados = obter_dados_consulta()

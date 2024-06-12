@@ -8,7 +8,6 @@ def menu_administrador():
     while True:
         mostrar_menu_administrador()
         opcao = input("Selecione uma opção: ")
-        
         if opcao == "0":
             break
         elif opcao == "1":

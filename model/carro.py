@@ -47,8 +47,8 @@ class Carro:
     def buscar_carro_por_id(id_carro):
         conexao = conectar()
         cursor = conexao.cursor(dictionary=True)
-    
-        query = """
+        
+        cursor.execute("""
             SELECT 
                 c.id_carro,
                 c.modelo,
@@ -60,9 +60,7 @@ class Carro:
             JOIN marca m ON c.id_marca = m.id_marca
             JOIN cambio ca ON c.id_cambio = ca.id_cambio
             WHERE c.id_carro = %s
-        """
-        
-        cursor.execute(query, (id_carro,))
+        """, (id_carro,))
         carro = cursor.fetchone()
         cursor.close()
         conexao.close()
