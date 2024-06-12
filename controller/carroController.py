@@ -42,12 +42,23 @@ def excluir_carro():
             print("Entrada inválida. Por favor, insira um número válido.")
 
 def editar_carro():
-    where = obter_dados_consulta()
-    carro = Carro.buscar(where)
-    if carro:
-        id_carro, modelo, ano, preco, marca,  cambio = obter_dados_carro()
-        carro = Carro(id_carro, modelo, ano, preco, marca, cambio)
-        carro.atualizar()
-        print("Carro editado com sucesso!")
-    else:
-        print("Carro não encontrado.")
+    while True:
+        try:
+            id_carro = int(input("ID do Carro: "))
+            if id_carro > 0 and Carro.verificar_id_carro(id_carro):
+                modelo, ano, preco, marca, cambio = obter_dados_carro()
+                carro = Carro(id_carro, modelo, ano, preco, marca.id_marca, cambio.id_cambio)
+                carro.atualizar()
+                print("Carro editado com sucesso!")
+            else:
+                print("Nenhum carro encontrado com esse ID")
+                print("Deseja tentar novamente: (s/n)")
+                opcao = input()
+                if opcao.lower() == "n":
+                    break
+                elif opcao.lower() == "s":
+                    continue
+                else:
+                    print("Opção inválida. Tente novamente.")
+        except ValueError:
+            print("Entrada inválida. Por favor, insira um número válido.")

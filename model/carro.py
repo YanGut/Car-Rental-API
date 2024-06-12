@@ -60,6 +60,9 @@ class Carro:
             SET modelo = %s, ano = %s, preco = %s, id_marca = %s, id_cambio = %s
             WHERE id_carro = %s
         """, (self.modelo, self.ano, self.preco, self.marca, self.cambio, self.id_carro))
+        conexao.commit()
+        cursor.close()
+        conexao.close()
 
     def toString(self):
         return f"Modelo: {self.modelo}, Ano: {self.ano}, Preço: {self.preco}, Marca: {self.marca}, Câmbio: {self.cambio}"
