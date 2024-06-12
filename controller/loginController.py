@@ -17,12 +17,10 @@ def menu_administrador():
         elif opcao == "3":
             detalhar_carro(True)
         elif opcao == "4":
-            comparar_carros()
-        elif opcao == "5":
             editar_carro()
-        elif opcao == "6":
+        elif opcao == "5":
             excluir_carro()
-        elif opcao == "7":
+        elif opcao == "6":
             excluir_aluguel()
         else:
             print("Opção inválida!")

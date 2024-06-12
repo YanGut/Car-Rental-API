@@ -17,10 +17,9 @@ def mostrar_menu_administrador():
     print("1. Cadastrar Carro")
     print("2. Buscar Carro")
     print("3. Visualizar Detalhes do Carro")
-    print("4. Comparar Carros")
-    print("5. Editar Carro")
-    print("6. Excluir Carro")
-    print("7. Cancelar Aluguel pelo Gerente")
+    print("4. Editar Carro")
+    print("5. Excluir Carro")
+    print("6. Cancelar Aluguel pelo Gerente")
     print("0. Logout")
 
 def mostrar_menu_usuario(usuario):
