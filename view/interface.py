@@ -2,7 +2,7 @@
 import os
 from utils.validacoes import *
 
-limpar_console = lambda: os.system('clear')
+limpar_console = lambda: os.system('cls')
 
 def mostrar_menu_principal():
     limpar_console()    

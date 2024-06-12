@@ -90,14 +90,11 @@ class Carro:
         
         return carro
 
-    def remover(self):
+    def remover(id_carro):
         conexao = conectar()
         cursor = conexao.cursor()
-        cursor.execute("""
-            DELETE FROM aluguel WHERE id_carro = %s
-            
-            DELETE FROM carro WHERE id_carro = %s
-        """, (self.id_carro))
+        cursor.execute("DELETE FROM aluguel WHERE id_carro = %s", (id_carro,))
+        cursor.execute("DELETE FROM carro WHERE id_carro = %s", (id_carro,))
         conexao.commit()
         cursor.close()
         conexao.close()
@@ -110,6 +107,9 @@ class Carro:
             SET modelo = %s, ano = %s, preco = %s, id_marca = %s, id_cambio = %s
             WHERE id_carro = %s
         """, (self.modelo, self.ano, self.preco, self.marca, self.cambio, self.id_carro))
+        conexao.commit()
+        cursor.close()
+        conexao.close()
 
     def toString(self):
         return f"Modelo: {self.modelo}, Ano: {self.ano}, Preço: {self.preco}, Marca: {self.marca}, Câmbio: {self.cambio}"
@@ -137,3 +137,24 @@ class Carro:
         cursor.close()
         conexao.close()
         return len(resultado) == 0
+    
+    # def buscar_carro_marca_modelo(marca, modelo):
+    #     conexao = conectar()
+    #     cursor = conexao.cursor(dictionary=True)
+    #     cursor.execute("""
+    #         SELECT 
+    #             c.id_carro,
+    #             c.modelo,
+    #             c.ano,
+    #             c.preco,
+    #             m.nome AS marca,
+    #             ca.tipo_cambio AS cambio
+    #         FROM carro c
+    #         JOIN marca m ON c.id_marca = m.id_marca
+    #         JOIN cambio ca ON c.id_cambio = ca.id_cambio
+    #         WHERE m.nome = %s AND c.modelo = %s
+    #     """, (marca, modelo))
+    #     carro = cursor.fetchone()
+    #     cursor.close()
+    #     conexao.close()
+    #     return carro
