@@ -15,8 +15,9 @@ def mostrar_aluguel(aluguel):
     print(f"Data de Fim: {aluguel['data_fim']}")
     print(f"Valor: {aluguel['valor']}")
     
-def obter_dados_aluguel():
-    limpar_console()
+def obter_dados_aluguel(limpar = True):
+    if limpar:
+        limpar_console()
     while True:
         try:
             id_carro = int(input("ID do Carro: "))
@@ -38,14 +39,22 @@ def obter_dados_aluguel():
     while True:
         data_inicio = input("Data de Início (yyyy-mm-dd): ")
         if validar_data(data_inicio):
+            data_inicio_dt = datetime.strptime(data_inicio, '%Y-%m-%d')
             break
         print("Data inválida. Tente novamente.")
         
     while True:
         data_fim = input("Data de Fim (yyyy-mm-dd): ")
         if validar_data(data_fim):
-            break
+            data_fim_dt = datetime.strptime(data_fim, '%Y-%m-%d')
+            if data_fim_dt > data_inicio_dt:
+                break
+            print("Data de fim deve ser posterior à data de início.")
         print("Data inválida. Tente novamente.")
+    
+    if not Carro.verificar_disponibilidade_carro(id_carro, data_inicio, data_fim):
+        print("O carro já está alugado nesse período. Tente novamente.")
+        return obter_dados_aluguel(False)
     
     while True:
         try:
