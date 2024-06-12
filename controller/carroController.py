@@ -30,13 +30,16 @@ def comparar_carros():
     return print(f"Comparação entre carros:\n {carro[0]} \n {carro[1]}") if carro else print("Carro não encontrado.")
 
 def excluir_carro():
-    where = obter_dados_consulta()
-    carro = Carro.buscar(where)
-    if carro:
-        carro.remover()
-        print("Carro removido com sucesso!")
-    else:
-        print("Carro não encontrado.")
+    while True:
+        try:
+            id_carro = int(input("ID do Carro: "))
+            if id_carro > 0 and Carro.verificar_id_carro(id_carro):
+                Carro.remover(id_carro)
+                print("Carro removido com sucesso!")
+                break
+            print("ID do carro inválido ou não encontrado. Tente novamente.")
+        except ValueError:
+            print("Entrada inválida. Por favor, insira um número válido.")
 
 def editar_carro():
     where = obter_dados_consulta()
