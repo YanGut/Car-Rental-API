@@ -21,18 +21,19 @@ def validar_potencia(potencia):
 def validar_marca_modelo(valor):
     return len(valor.strip()) > 0
 
-validar_marca = lambda marca: marca in {
-    "Chevrolet": True,
-    "Ford": True,
-    "Fiat": True,
-    "Volkswagen": True,
-    "Renault": True,
-    "Toyota": True,
-    "Hyundai": True,
-    "Honda": True,
-    "Jeep": True,
-    "Nissan": True
-}
+#Dicionario e List Comprehension
+validar_marca = lambda marca: marca in {marca for marca in [
+    "Chevrolet",
+    "Ford",
+    "Fiat",
+    "Volkswagen",
+    "Renault",
+    "Toyota",
+    "Hyundai",
+    "Honda",
+    "Jeep",
+    "Nissan"
+]}
 
 def validar_combustivel(combustivel):
     combustiveis_validos = ["Gasolina", "Álcool", "Diesel", "Flex"]
@@ -55,5 +56,6 @@ def validar_data(data):
     except ValueError:
         return False
 
+#Monad
 def validar_id_carro(id_carro):
     return id_carro.isdigit() and int(id_carro) > 0

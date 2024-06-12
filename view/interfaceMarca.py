@@ -4,7 +4,8 @@ from utils.validacoes import *
 # Interface Marca
 def obter_dados_marca():
     while True:
-        print("Marcas disponíveis: Chevrolet, Ford, Fiat, Volkswagen, Renault, Toyota, Hyundai, Honda, Jeep, Nissan")
+        dic = ["Chevrolet", "Ford", "Fiat", "Volkswagen", "Renault", "Toyota", "Hyundai", "Honda", "Jeep", "Nissan"]
+        print(dic.map(lambda x: f"{dic.index(x)} - {x}"))
         marca = input("Marca: ")
         if validar_marca(marca):
             break

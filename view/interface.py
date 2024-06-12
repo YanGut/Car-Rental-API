@@ -14,18 +14,32 @@ def mostrar_menu_principal():
 def mostrar_menu_administrador():
     limpar_console()  
     print("=== Menu do Administrador ===")
-    print("1. Cadastrar Carro")
-    print("2. Buscar Carro")
-    print("3. Visualizar Detalhes do Carro")
-    print("4. Editar Carro")
-    print("5. Excluir Carro")
-    print("6. Cancelar Aluguel pelo Gerente")
-    print("0. Logout")
+
+    menu_items = [
+        "Cadastrar Carro",
+        "Buscar Carro",
+        "Visualizar Detalhes do Carro",
+        "Editar Carro",
+        "Excluir Carro",
+        "Cancelar Aluguel pelo Gerente",
+        "Logout"
+    ]
+
+    # Lambda recursiva
+    print_menu_items = (lambda f: (lambda items, index=0: f(f, items, index)))(
+        lambda self, items, index: (
+            print(f"{index + 1}. {items[index]}")
+            if index < len(items) else None,
+            self(self, items, index + 1) if index < len(items) else None
+        )
+    )
+    
+    # Chamar a lambda para imprimir os itens do menu
+    print_menu_items(menu_items)
 
 def mostrar_menu_usuario(usuario):
     limpar_console()
-    print(f"=== Menu do Usuário ===\nUsuário: {usuario[1]}")
-    print("=== Menu do Usuário ===")
+    print(f"=== Menu do Usuário ===\nUsuário: {usuario[4]}")
     print("1. Buscar Carro")
     print("2. Visualizar Detalhes do Carro")
     print("3. Alugar Carro")

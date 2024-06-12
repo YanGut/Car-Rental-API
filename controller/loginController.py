@@ -8,7 +8,7 @@ def menu_administrador():
     while True:
         mostrar_menu_administrador()
         opcao = input("Selecione uma opção: ")
-        if opcao == "0":
+        if opcao == "7":
             break
         elif opcao == "1":
             cadastrar_carro()

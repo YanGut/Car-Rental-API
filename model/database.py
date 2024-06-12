@@ -76,6 +76,7 @@ def criar_tabelas():
     conexao = conectar()
     cursor = conexao.cursor()
 
+    #Lambda de alta ordem
     list(map(lambda comando: criar_tabela(cursor, comando), comandos_sql))
 
     conexao.commit()

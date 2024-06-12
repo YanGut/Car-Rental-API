@@ -39,7 +39,11 @@ def obter_dados_carro():
 def obter_dados_consulta():
     limpar_console()
     while True:
-        print("Marcas disponíveis: Chevrolet, Ford, Fiat, Volkswagen, Renault, Toyota, Hyundai, Honda, Jeep, Nissan")
+        #Dicionário das marcas
+        dic = {"Chevrolet", "Ford", "Fiat", "Volkswagen", "Renault", "Toyota", "Hyundai", "Honda", "Jeep", "Nissan"}
+        print("Marcas disponíveis: ")
+        list(map(print, dic))
+        
         marca = input("Marca: ")
         if validar_marca(marca):
             break
